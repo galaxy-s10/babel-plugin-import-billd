@@ -1,6 +1,6 @@
 {
   "name": "babel-plugin-import-billd",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "billd's mini babel-plugin-import",
   "keywords": [
     "billd",
@@ -19,6 +19,9 @@
   "author": "shuisheng <https://github.com/galaxy-s10>",
   "main": "./dist/cjs.js",
   "module": "./dist/esm.js",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "rimraf dist && rollup -c"
   },
