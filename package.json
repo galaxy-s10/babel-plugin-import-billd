@@ -1,6 +1,6 @@
 {
   "name": "babel-plugin-import-billd",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "billd's mini babel-plugin-import",
   "keywords": [
     "billd",
