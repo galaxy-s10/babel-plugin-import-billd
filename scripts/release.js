@@ -56,7 +56,7 @@ const selectReleaseVersion = async () => {
     updatePackageJSON();
 
     // 生成changelog
-    execSync(`yarn run changelog`, { stdio: 'inherit' });
+    execSync(`npm run changelog`, { stdio: 'inherit' });
 
     // git commit
     execSync(`git add .`, { stdio: 'inherit' });

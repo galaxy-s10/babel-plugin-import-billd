@@ -1,15 +1,35 @@
-# 源码
+<p align="center">
+  <a href="">
+    <img
+      width="200"
+      src="https://resource.hsslive.cn/image/1613141138717Billd.webp"
+      alt="babel-plugin-import-billd logo"
+    />
+  </a>
+</p>
 
-[https://github.com/galaxy-s10/babel-plugin-import-billd](https://github.com/galaxy-s10/babel-plugin-import-billd)
+<h1 align="center">
+  babel-plugin-import-billd
+</h1>
 
-# 概况
+<p align="center">
+迷你版按需加载插件
+</p>
+
+<div align="center">
+<a href="https://www.npmjs.com/package/babel-plugin-import-billd"><img src="https://img.shields.io/npm/v/babel-plugin-import-billd.svg" alt="Version"></a>
+<a href="https://www.npmjs.com/package/babel-plugin-import-billd"><img src="https://img.shields.io/npm/dw/babel-plugin-import-billd.svg" alt="Downloads"></a>
+<a href="https://www.npmjs.com/package/babel-plugin-import-billd"><img src="https://img.shields.io/npm/l/babel-plugin-import-billd.svg" alt="License"></a>
+</div>
+
+# 简介
 
 参考了[babel-plugin-import](https://github.com/umijs/babel-plugin-import)，实现了我认为核心的三个配置项：`libraryName`、`libraryDirectory`、`style`
 
 # 安装
 
 ```sh
-npm i babel-plugin-import-billd
+npm i babel-plugin-import-billd --save-dev
 ```
 
 # 使用
@@ -44,9 +64,13 @@ import { Button, Switch } from 'ant-design-vue';
 console.log(Button, Switch);
 ```
 
-# 引用
+# 参考
 
 - [@babel/helper-module-imports](https://babel.dev/docs/en/babel-helper-module-imports)
 - [babel-plugin-import](https://github.com/umijs/babel-plugin-import)
 - [babel-handbook](https://github.com/jamiebuilds/babel-handbook/blob/master/translations/zh-Hans/plugin-handbook.md)
 - [https://astexplorer.net](https://astexplorer.net)
+
+# 源码
+
+[https://github.com/galaxy-s10/babel-plugin-import-billd](https://github.com/galaxy-s10/babel-plugin-import-billd)
