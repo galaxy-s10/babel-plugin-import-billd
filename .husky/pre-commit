@@ -1,4 +1,7 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
+# 由于项目使用pnpm作为包管理工具，因此建议使用pnpm执行命令
+# 如果用pnpm安装lint-staged，但是使用npm执行lint-staged命令，在node14里会报错，
+# 但是在node16就不会报错？可能跟我安装包时候的的node版本有关，因此建议统一都使用一个包管理工具
 pnpm exec lint-staged

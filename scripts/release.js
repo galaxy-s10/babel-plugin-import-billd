@@ -3,7 +3,6 @@ const inquirer = require('inquirer');
 const semver = require('semver');
 const { execSync, exec } = require('child_process');
 const { readJSONSync, writeJSONSync } = require('fs-extra');
-const { updatePackageJSON } = require('./update');
 const { chalkERROR, chalkINFO, chalkSUCCESS } = require('./chalkTip');
 const { name: pkgName, version: currentVersion } = readJSONSync('package.json'); // 项目根目录的package.json
 
@@ -52,11 +51,11 @@ const selectReleaseVersion = async () => {
       { spaces: 2 }
     );
 
-    // 更新package.json
-    updatePackageJSON();
+    // pnpm run build
+    execSync(`pnpm run build`, { stdio: 'inherit' });
 
     // 生成changelog
-    execSync(`npm run changelog`, { stdio: 'inherit' });
+    execSync(`pnpm run changelog`, { stdio: 'inherit' });
 
     // git commit
     execSync(`git add .`, { stdio: 'inherit' });
