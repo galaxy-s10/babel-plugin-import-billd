@@ -1,5 +1,6 @@
-const path = require('path');
 const { execSync } = require('child_process');
+const path = require('path');
+
 const pkg = require('../package.json');
 const { chalkSUCCESS, chalkERROR, chalkINFO } = require('./chalkTip');
 
