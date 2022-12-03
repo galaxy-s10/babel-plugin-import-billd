@@ -17,8 +17,8 @@
   },
   "license": "MIT",
   "author": "shuisheng <https://github.com/galaxy-s10>",
-  "main": "./dist/cjs.js",
-  "module": "./dist/esm.js",
+  "main": "./dist/index.cjs.js",
+  "module": "./dist/index.esm.js",
   "files": [
     "dist",
     "./postinstall.js"
@@ -29,6 +29,7 @@
     "changelog": "conventional-changelog -p eslint -i CHANGELOG.md -s",
     "changelog:first": "conventional-changelog -p eslint -i CHANGELOG.md -s -r 0",
     "cz": "cz",
+    "dev": "node ./scripts/build.js --watch",
     "postinstall": "node ./postinstall.js",
     "lint": "eslint --config ./.eslintrc.js . --ext .js,.jsx,.ts,.tsx",
     "lint:fix": "eslint --config ./.eslintrc.js . --ext .js,.jsx,.ts,.tsx --fix",
