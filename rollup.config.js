@@ -111,9 +111,9 @@ export default defineConfig([
        * exports默认值是auto，可选：default、none。https://rollupjs.org/guide/zh/#exports
        * 如果我们源代码默认导出和具名导出一起使用，编译的时候会报警告(!) Mixing named and default exports
        * 设置exports: 'named'就不会报警告了（实际上只是不会报警告了，设不设置named对实际打包的结果都没影响）
-       * 如果我们源代码没有默认导出和具名导出一起使用，但是设置了exports: 'named'，会生成：exports["default"] = BilldHtmlWebpackPlugin;
-       * 别人通过cjs导入的话，就得const BilldHtmlWebpackPlugin = require("babel-plugin-import-billd").default;才能拿到默认导出；如果不使用exports: 'named'，
-       * 默认会生成：module.exports = BilldHtmlWebpackPlugin;别人通过cjs导入的话，就正常的const BilldHtmlWebpackPlugin = require("babel-plugin-import-billd");即可
+       * 如果我们源代码没有默认导出和具名导出一起使用，但是设置了exports: 'named'，会生成：exports["default"] = BabelPluginImportBilld;
+       * 别人通过cjs导入的话，就得const BabelPluginImportBilld = require("babel-plugin-import-billd").default;才能拿到默认导出；如果不使用exports: 'named'，
+       * 默认会生成：module.exports = BabelPluginImportBilld;别人通过cjs导入的话，就正常的const BabelPluginImportBilld = require("babel-plugin-import-billd");即可
        */
       // exports: 'named', // babel-plugin-import-billd只有一个默认导出，因此不需要设置exports: 'named'
     },
