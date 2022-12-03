@@ -1,3 +1,17 @@
+## [0.0.4](https://github.com/galaxy-s10/babel-plugin-import-billd/compare/v0.0.3...v0.0.4) (2022-12-03)
+
+
+### ci
+
+* eslint ([a1fdab1](https://github.com/galaxy-s10/babel-plugin-import-billd/commit/a1fdab164127fa6207b6c34b14c84a006a177ae1))
+
+### fix
+
+* 更新依赖 ([63aee56](https://github.com/galaxy-s10/babel-plugin-import-billd/commit/63aee56cfc39e779dd41d82c1b89117e908a3e72))
+* 修改pkg ([a354a0d](https://github.com/galaxy-s10/babel-plugin-import-billd/commit/a354a0df8bcbba17c23258ac760ca8da3d2bf673))
+
+
+
 ## 0.0.3 (2022-12-02)
 
 
