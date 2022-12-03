@@ -43,19 +43,21 @@
       "path": "./node_modules/cz-conventional-changelog"
     }
   },
+  "dependencies": {
+    "@babel/helper-module-imports": "^7.18.6"
+  },
   "devDependencies": {
-    "@babel/core": "^7.13.10",
-    "@babel/helper-module-imports": "^7.18.6",
+    "@babel/core": "^7.18.9",
     "@babel/plugin-transform-runtime": "^7.16.8",
-    "@babel/preset-env": "^7.13.10",
+    "@babel/preset-env": "^7.18.9",
     "@babel/runtime-corejs3": "^7.18.9",
     "@commitlint/cli": "^17.0.3",
     "@commitlint/config-conventional": "^17.0.3",
     "@rollup/plugin-babel": "^5.3.0",
-    "@rollup/plugin-commonjs": "^17.1.0",
-    "@rollup/plugin-node-resolve": "^11.2.0",
+    "@rollup/plugin-commonjs": "^22.0.1",
+    "@rollup/plugin-json": "^4.1.0",
+    "@rollup/plugin-node-resolve": "^13.3.0",
     "chalk": "^4",
-    "commander": "^9.3.0",
     "commitizen": "^4.2.5",
     "conventional-changelog-cli": "^2.2.2",
     "cz-conventional-changelog": "^3.3.0",
@@ -65,11 +67,11 @@
     "eslint-plugin-prettier": "^4.0.0",
     "fs-extra": "^10.1.0",
     "husky": "^8.0.1",
-    "inquirer": "^8.2.4",
+    "inquirer": "^8",
     "lint-staged": "^13.0.3",
     "prettier": "^2.7.1",
     "rimraf": "^3.0.2",
-    "rollup": "^2.42.2",
+    "rollup": "^2.77.0",
     "rollup-plugin-terser": "^7.0.2",
     "semver": "^7.3.7"
   }
