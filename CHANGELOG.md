@@ -1,3 +1,18 @@
+## [0.0.5](https://github.com/galaxy-s10/babel-plugin-import-billd/compare/v0.0.4...v0.0.5) (2023-02-11)
+
+
+### feat
+
+* 添加.npmrc ([354c428](https://github.com/galaxy-s10/babel-plugin-import-billd/commit/354c428a61e812145c8ff01cb3e9aeb41294498e))
+
+### fix
+
+* 修改注释 ([3a840ba](https://github.com/galaxy-s10/babel-plugin-import-billd/commit/3a840ba25c93fedfdcc10ee4287871996668771f))
+* 修改注释 ([80ca5e6](https://github.com/galaxy-s10/babel-plugin-import-billd/commit/80ca5e6941817ffb68bbbb24199a94e5b83ec122))
+* 优化文件名 ([f873de3](https://github.com/galaxy-s10/babel-plugin-import-billd/commit/f873de3ad67383a7f5c81e7fd1c0a553b795bb99))
+
+
+
 ## [0.0.4](https://github.com/galaxy-s10/babel-plugin-import-billd/compare/v0.0.3...v0.0.4) (2022-12-03)
 
 
