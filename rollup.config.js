@@ -115,6 +115,7 @@ export default defineConfig([
        * 别人通过cjs导入的话，就得const BabelPluginImportBilld = require("babel-plugin-import-billd").default;才能拿到默认导出；如果不使用exports: 'named'，
        * 默认会生成：module.exports = BabelPluginImportBilld;别人通过cjs导入的话，就正常的const BabelPluginImportBilld = require("babel-plugin-import-billd");即可
        */
+      exports: 'auto',
       // exports: 'named', // babel-plugin-import-billd只有一个默认导出，因此不需要设置exports: 'named'
     },
     external: allDep,

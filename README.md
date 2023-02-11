@@ -26,6 +26,18 @@
 
 参考了[babel-plugin-import](https://github.com/umijs/babel-plugin-import)，实现了我认为核心的三个配置项：`libraryName`、`libraryDirectory`、`style`
 
+# 案例
+
+```js
+import { Button } from 'ant-design-vue'
+console.log(Button)
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+var _button = require('ant-design-vue/lib/button')
+require('ant-design-vue/lib/button/style.css')
+console.log(_button)
+```
+
 # 安装
 
 ```sh
@@ -35,6 +47,12 @@ npm i babel-plugin-import-billd --save-dev
 # 使用
 
 babel.config.js：
+
+- libraryName
+- libraryDirectory
+- style
+
+> 这三个属性的具体行为基本和 [babel-plugin-import](https://github.com/umijs/babel-plugin-import#style) 一致
 
 ```js
 plugins: [
@@ -47,7 +65,7 @@ plugins: [
   ],
   [
     'import-billd',
-    { libraryName: 'antd', libraryDirectory: 'lib', style: 'css' },
+    { libraryName: 'antd', libraryDirectory: 'lib', style: true },
     'bbb',
   ],
 ],
