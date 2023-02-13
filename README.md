@@ -28,14 +28,27 @@
 
 # 案例
 
-```js
-import { Button } from 'ant-design-vue'
-console.log(Button)
-      ↓ ↓ ↓ ↓ ↓ ↓
+最粗浅的理解就是在编译阶段，将以下代码（或者说是这个文件）：
 
-var _button = require('ant-design-vue/lib/button')
-require('ant-design-vue/lib/button/style.css')
-console.log(_button)
+```js
+import { Button } from 'ant-design-vue';
+console.log(Button);
+```
+
+转换为；
+
+```js
+import Button from 'ant-design-vue/es/button';
+import 'ant-design-vue/es/button/style.css';
+console.log(Button);
+```
+
+或者转换为：
+
+```js
+import Button from 'ant-design-vue/lib/button';
+import 'ant-design-vue/lib/button/style.css';
+console.log(Button);
 ```
 
 # 安装
