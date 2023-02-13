@@ -1,3 +1,12 @@
+## [0.0.6](https://github.com/galaxy-s10/babel-plugin-import-billd/compare/v0.0.5...v0.0.6) (2023-02-13)
+
+
+### fix
+
+* 添加边界判断 ([11d4d38](https://github.com/galaxy-s10/babel-plugin-import-billd/commit/11d4d38599b84472c6ec456b468eb5450e5c33f1))
+
+
+
 ## [0.0.5](https://github.com/galaxy-s10/babel-plugin-import-billd/compare/v0.0.4...v0.0.5) (2023-02-11)
 
 
