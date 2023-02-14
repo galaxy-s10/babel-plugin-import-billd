@@ -1,3 +1,12 @@
+## [0.0.7](https://github.com/galaxy-s10/babel-plugin-import-billd/compare/v0.0.6...v0.0.7) (2023-02-14)
+
+
+### fix
+
+* 修复已知问题 ([0ece069](https://github.com/galaxy-s10/babel-plugin-import-billd/commit/0ece06942821e723fd0637311cc7f73d02afd566))
+
+
+
 ## [0.0.6](https://github.com/galaxy-s10/babel-plugin-import-billd/compare/v0.0.5...v0.0.6) (2023-02-13)
 
 
