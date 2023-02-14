@@ -33,6 +33,8 @@ export default function () {
     const kebabCaseName = toKebabCase(argName);
 
     // 处理js
+    // https://babeljs.io/docs/en/babel-helper-module-imports#import-_hintedname-from-source
+    // https://babeljs.io/docs/en/v7-migration-api#babelcore，addDefault的前身是path.hub.file.addImport，7.x后删除了。
     const res = addDefault(
       file.path,
       `${libraryName}/${libraryDirectory}/${kebabCaseName}`,
@@ -51,6 +53,8 @@ export default function () {
         `${libraryName}/${libraryDirectory}/${kebabCaseName}/style/css.js`
       );
     }
+
+    // { type: 'Identifier', name: '_Alert' }
     return res;
   }
 
@@ -153,23 +157,23 @@ export default function () {
       /**
        * 属性相关的会执行这个函数，如：import { Button } from 'antd'; let components = { a:Button };的时候
        */
-      // Property(path, state) {
-      //   const { node } = path;
-      //   const file =
-      //     (path && path.hub && path.hub.file) || (state && state.file);
-      //   const { libraryName, libraryDirectory, style = false } = state.opts;
-      //   if (pathList[node.value.name]) {
-      //     const res = handleImport({
-      //       libraryName,
-      //       libraryDirectory,
-      //       style,
-      //       argName: node.value.name,
-      //       file,
-      //     });
-      //     // 修改node.value
-      //     node.value = res;
-      //   }
-      // },
+      Property(path, state) {
+        const { node } = path;
+        const file =
+          (path && path.hub && path.hub.file) || (state && state.file);
+        const { libraryName, libraryDirectory, style = false } = state.opts;
+        if (pathList[node.value.name]) {
+          const res = handleImport({
+            libraryName,
+            libraryDirectory,
+            style,
+            argName: node.value.name,
+            file,
+          });
+          // 修改node.value
+          node.value = res;
+        }
+      },
     },
   };
 }
