@@ -1,3 +1,5 @@
+/** @typedef {import("@babel/core").PluginObj} PluginObj */
+
 const { addDefault, addSideEffect } = require('@babel/helper-module-imports');
 
 /**
@@ -8,7 +10,7 @@ const { addDefault, addSideEffect } = require('@babel/helper-module-imports');
  *
  * 进入a.js文件
  * ImportDeclaration  收集按需加载的包
- * CallExpression     将按需加载的包的js模块进行转化、添加对应的jcss副作用
+ * CallExpression     将按需加载的包的js模块进行转化、添加对应的js和css副作用
  * 退出a.js文件，并将ImportDeclaration收集的代码删除
  *
  * 举个例子总结：在编译阶段，将a.js里面的import { Button } from 'antd'这行代码删除，然后插入var Button = require('antd/lib/Button')这行代码
@@ -23,6 +25,7 @@ export default function () {
     argName,
     file,
   }) {
+    console.log('\n===handleImport===', argName);
     // myName或MyName转化为my-name
     function toKebabCase(input) {
       return input.replace(
@@ -58,7 +61,8 @@ export default function () {
     return res;
   }
 
-  return {
+  /** @type {PluginObj} */
+  const obj = {
     // 每个文件都会走一遍visitor
     visitor: {
       /**
@@ -68,12 +72,12 @@ export default function () {
       Program: {
         // pathList不能放在最外层的全局，需要每次进入一个文件都重置pathList，否则会导致报错（在一个文件里handleImport执行了上一个文件的handleImport操作）
         enter: (path, state) => {
-          console.log('enter', state.filename);
+          // console.log('enter', state.filename);
           pathList = Object.create(null); // 如果单纯的{}，MemberExpression的时候，node.object.name会存在Object原型的方法，后面逻辑导致报错
         },
         exit(path, state) {
           Object.keys(pathList).forEach((key) => {
-            console.log('exit', state.filename, Object.keys(pathList));
+            // console.log('exit', state.filename, Object.keys(pathList));
             // 将import { Button, Alert } from 'antd'移除，否则会造成重复打包
             !pathList[key].removed && pathList[key].remove();
           });
@@ -114,11 +118,26 @@ export default function () {
           (path && path.hub && path.hub.file) || (state && state.file);
         const { libraryName, libraryDirectory, style = false } = state.opts;
         // 此时的node.arguments是Identifier节点数组（【Identifier对象（Button）,Identifier对象（Alert）】）
+        // 这里主要是修改调用的Button和Alert的Identifier对象
+        /**
+         * 可以理解为：
+         * import {Button} from 'antd';
+         * console.log(Button)
+         * 转换为：
+         * import _Button from 'antd/lib/button'
+         * console.log(_Button)
+         */
         node.arguments = node.arguments.map((arg) => {
           // 这个argName就是Button、Alert
           const { name: argName } = arg;
           // 如果形参里的参数在pathList里，则替换路径，插入依赖
-          if (pathList[argName]) {
+          // 确保形参里面调用的Button是import的Button，而不是其他类型的Button
+          // 例如：var Button={};console.log(Button);此时的Button的类型就是VariableDeclarator类型的
+          if (
+            pathList[argName] &&
+            path.scope.hasBinding(argName) &&
+            path.scope.getBinding(argName).path.type === 'ImportSpecifier'
+          ) {
             const res = handleImport({
               libraryName,
               libraryDirectory,
@@ -126,7 +145,6 @@ export default function () {
               argName,
               file,
             });
-            // 修改Button、Alert的Identifier
             return res;
           }
           return arg;
@@ -149,6 +167,7 @@ export default function () {
             argName: node.object.name,
             file,
           });
+          // 这里主要是修改调用的message的Identifier对象
           // 修改node.object
           node.object = res;
         }
@@ -176,4 +195,6 @@ export default function () {
       },
     },
   };
+
+  return obj;
 }

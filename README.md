@@ -26,6 +26,15 @@
 
 参考了[babel-plugin-import](https://github.com/umijs/babel-plugin-import)，实现了我认为核心的三个配置项：`libraryName`、`libraryDirectory`、`style`
 
+# babel 插件简介
+
+https://github.com/jamiebuilds/babel-handbook/blob/master/translations/zh-Hans/plugin-handbook.md#babel-%E7%9A%84%E5%A4%84%E7%90%86%E6%AD%A5%E9%AA%A4
+
+- Babel 的三个主要处理步骤分别是： 解析（parse），转换（transform），生成（generate）
+- 转换步骤接收 AST 并对其进行遍历，在此过程中对节点进行添加、更新及移除等操作。 这是 Babel 或是其他编译器中最复杂的过程 同时也是插件将要介入工作的部分
+
+可以得出结论，babel 插件主要是操作 ast，而操作 ast 其实就是操作 visitor
+
 # 案例
 
 最粗浅的理解就是在编译阶段，将以下代码（或者说是这个文件）：
