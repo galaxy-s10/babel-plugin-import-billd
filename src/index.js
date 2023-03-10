@@ -1,6 +1,5 @@
 /** @typedef {import("@babel/core").PluginObj} PluginObj */
-
-const { addDefault, addSideEffect } = require('@babel/helper-module-imports');
+import { addDefault, addSideEffect } from '@babel/helper-module-imports';
 
 /**
  * 这里仅仅使用了ImportDeclaration和CallExpression这两个hook
@@ -23,7 +22,7 @@ export default function () {
     libraryDirectory,
     style,
     argName,
-    file,
+    path,
   }) {
     console.log('\n===handleImport===', argName);
     // myName或MyName转化为my-name
@@ -39,7 +38,7 @@ export default function () {
     // https://babeljs.io/docs/en/babel-helper-module-imports#import-_hintedname-from-source
     // https://babeljs.io/docs/en/v7-migration-api#babelcore，addDefault的前身是path.hub.file.addImport，7.x后删除了。
     const res = addDefault(
-      file.path,
+      path,
       `${libraryName}/${libraryDirectory}/${kebabCaseName}`,
       { nameHint: argName }
     );
@@ -47,12 +46,12 @@ export default function () {
     // 处理css
     if (style === true) {
       addSideEffect(
-        file.path,
+        path,
         `${libraryName}/${libraryDirectory}/${kebabCaseName}/style/index.js`
       );
     } else if (style === 'css') {
       addSideEffect(
-        file.path,
+        path,
         `${libraryName}/${libraryDirectory}/${kebabCaseName}/style/css.js`
       );
     }
@@ -71,7 +70,7 @@ export default function () {
        */
       Program: {
         // pathList不能放在最外层的全局，需要每次进入一个文件都重置pathList，否则会导致报错（在一个文件里handleImport执行了上一个文件的handleImport操作）
-        enter: (path, state) => {
+        enter(path, state) {
           // console.log('enter', state.filename);
           pathList = Object.create(null); // 如果单纯的{}，MemberExpression的时候，node.object.name会存在Object原型的方法，后面逻辑导致报错
         },
@@ -114,8 +113,6 @@ export default function () {
         // state.file:当前匹配的文件
         // state.filename:当前匹配的文件路径，如：'/Users/huangshuisheng/Desktop/hss/github/webpack-multi-static/src/page/index.ts'
         const { node } = path;
-        const file =
-          (path && path.hub && path.hub.file) || (state && state.file);
         const { libraryName, libraryDirectory, style = false } = state.opts;
         // 此时的node.arguments是Identifier节点数组（【Identifier对象（Button）,Identifier对象（Alert）】）
         // 这里主要是修改调用的Button和Alert的Identifier对象
@@ -143,7 +140,7 @@ export default function () {
               libraryDirectory,
               style,
               argName,
-              file,
+              path,
             });
             return res;
           }
@@ -156,8 +153,6 @@ export default function () {
        */
       MemberExpression(path, state) {
         const { node } = path;
-        const file =
-          (path && path.hub && path.hub.file) || (state && state.file);
         const { libraryName, libraryDirectory, style = false } = state.opts;
         if (pathList[node.object.name]) {
           const res = handleImport({
@@ -165,7 +160,7 @@ export default function () {
             libraryDirectory,
             style,
             argName: node.object.name,
-            file,
+            path,
           });
           // 这里主要是修改调用的message的Identifier对象
           // 修改node.object
@@ -178,8 +173,6 @@ export default function () {
        */
       Property(path, state) {
         const { node } = path;
-        const file =
-          (path && path.hub && path.hub.file) || (state && state.file);
         const { libraryName, libraryDirectory, style = false } = state.opts;
         if (pathList[node.value.name]) {
           const res = handleImport({
@@ -187,7 +180,7 @@ export default function () {
             libraryDirectory,
             style,
             argName: node.value.name,
-            file,
+            path,
           });
           // 修改node.value
           node.value = res;
